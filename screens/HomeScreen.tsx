@@ -7,7 +7,10 @@ import { RootStackParamList } from "../types";
 export default function HomeScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList, "Home">>();
   return (
-    <ImageBackground source={require("../assets/burger-pattern.png")} style={styles.bg}>
+   <ImageBackground
+     source={{ uri: "https://cdn.pixabay.com/photo/2023/03/18/14/14/burger-7422088_1280.png" }}
+     style={styles.bg}
+   >
       <View style={styles.container}>
         <Text style={styles.title}>Bayle Bites - Casual dining restaurant</Text>
         <Text style={styles.subtitle}>View our menu for delivery or in-store pickup</Text>

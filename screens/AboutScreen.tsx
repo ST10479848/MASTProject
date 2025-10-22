@@ -5,9 +5,9 @@ import { View, Text, StyleSheet, ImageBackground, ScrollView } from "react-nativ
 export default function AboutScreen() {
   return (
     <ImageBackground
-      source={require("../assets/burger-pattern.png")}
-      style={styles.bg}
-    >
+  source={{ uri: "https://cdn.pixabay.com/photo/2023/03/18/14/14/burger-7422088_1280.png" }}
+  style={styles.bg}
+>
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.header}>About Bayle Bites</Text>
         <Text style={styles.text}>

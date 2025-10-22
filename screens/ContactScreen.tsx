@@ -4,10 +4,10 @@ import { View, Text, StyleSheet, ImageBackground } from "react-native";
 
 export default function ContactScreen() {
   return (
-    <ImageBackground
-      source={require("../assets/burger-pattern.png")}
-      style={styles.bg}
-    >
+<ImageBackground
+  source={{ uri: "https://cdn.pixabay.com/photo/2023/03/18/14/14/burger-7422088_1280.png" }}
+  style={styles.bg}
+>
       <View style={styles.container}>
         <Text style={styles.header}>Contact Us</Text>
         <Text style={styles.text}>
