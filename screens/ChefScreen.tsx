@@ -5,11 +5,24 @@ import { Picker } from "@react-native-picker/picker";
 export default function ChefScreen() {
   const [dish, setDish] = useState("");
   const [desc, setDesc] = useState("");
-  const [course, setCourse] = useState("Appetizer");
+  const [course, setCourse] = useState("Appetizers");
   const [price, setPrice] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = () => {
-    alert(`Added ${dish} (${course}) - R${price}`);
+    if (!dish.trim() || !desc.trim() || !price.trim()) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
+    const priceNumber = parseFloat(price);
+    if (isNaN(priceNumber) || priceNumber <= 0) {
+      setError("Please enter a valid price greater than 0.");
+      return;
+    }
+
+    setError("");
+    alert(`Added ${dish} (${course}) - R${priceNumber.toFixed(2)}`);
     setDish("");
     setDesc("");
     setPrice("");
@@ -21,6 +34,7 @@ export default function ChefScreen() {
       style={styles.bg}
     >
       <View style={styles.container}>
+
         <Text style={styles.header}>Add Menu Item</Text>
 
         <TextInput placeholder="Dish name" style={styles.input} value={dish} onChangeText={setDish} />
@@ -34,6 +48,8 @@ export default function ChefScreen() {
           <Picker.Item label="Sides" value="Sides" />
           <Picker.Item label="Desserts" value="Desserts" />
         </Picker>
+
+        {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>Add Dish</Text>
@@ -50,20 +66,23 @@ const styles = StyleSheet.create({
   input: { backgroundColor: "#FFF", borderRadius: 10, padding: 10, marginBottom: 15 },
   label: { fontSize: 16, color: "#392A24", marginBottom: 5 },
   button: { backgroundColor: "#819171", padding: 15, borderRadius: 50, alignItems: "center", marginTop: 20 },
-  buttonText: { color: "#FFF", fontWeight: "600" },navRow: {
-  flexDirection: "row",
-  justifyContent: "space-around",
-  marginBottom: 20,
-},
-navButton: {
-  backgroundColor: "#819171",
-  paddingVertical: 8,
-  paddingHorizontal: 12,
-  borderRadius: 25,
-},
-navButtonText: {
-  color: "#FFF",
-  fontWeight: "600",
-  fontSize: 14,
-},
+  buttonText: { color: "#FFF", fontWeight: "600" },
+  errorText: { color: "red", fontWeight: "600", marginBottom: 10, textAlign: "center" },
+
+  navRow: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginBottom: 20,
+  },
+  navButton: {
+    backgroundColor: "#819171",
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 25,
+  },
+  navButtonText: {
+    color: "#FFF",
+    fontWeight: "600",
+    fontSize: 14,
+  },
 });
