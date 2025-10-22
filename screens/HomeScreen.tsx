@@ -28,5 +28,20 @@ const styles = StyleSheet.create({
   title: { fontSize: 28, fontWeight: "700", color: "#392A24", textAlign: "center", marginBottom: 15 },
   subtitle: { fontSize: 16, color: "#392A24", textAlign: "center", marginBottom: 30 },
   button: { backgroundColor: "#FFF", paddingVertical: 15, paddingHorizontal: 30, borderRadius: 50 },
-  buttonText: { fontSize: 18, fontWeight: "600", color: "#392A24" },
+  buttonText: { fontSize: 18, fontWeight: "600", color: "#392A24" },navRow: {
+  flexDirection: "row",
+  justifyContent: "space-around",
+  marginBottom: 20,
+},
+navButton: {
+  backgroundColor: "#819171",
+  paddingVertical: 8,
+  paddingHorizontal: 12,
+  borderRadius: 25,
+},
+navButtonText: {
+  color: "#FFF",
+  fontWeight: "600",
+  fontSize: 14,
+},
 });

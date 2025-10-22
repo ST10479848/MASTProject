@@ -50,5 +50,20 @@ const styles = StyleSheet.create({
   input: { backgroundColor: "#FFF", borderRadius: 10, padding: 10, marginBottom: 15 },
   label: { fontSize: 16, color: "#392A24", marginBottom: 5 },
   button: { backgroundColor: "#819171", padding: 15, borderRadius: 50, alignItems: "center", marginTop: 20 },
-  buttonText: { color: "#FFF", fontWeight: "600" },
+  buttonText: { color: "#FFF", fontWeight: "600" },navRow: {
+  flexDirection: "row",
+  justifyContent: "space-around",
+  marginBottom: 20,
+},
+navButton: {
+  backgroundColor: "#819171",
+  paddingVertical: 8,
+  paddingHorizontal: 12,
+  borderRadius: 25,
+},
+navButtonText: {
+  color: "#FFF",
+  fontWeight: "600",
+  fontSize: 14,
+},
 });

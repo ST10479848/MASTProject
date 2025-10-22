@@ -131,5 +131,20 @@ const styles = StyleSheet.create({
     color: "#392A24",
     fontSize: 16,
     marginTop: 20,
-  },
+  },navRow: {
+  flexDirection: "row",
+  justifyContent: "space-around",
+  marginBottom: 20,
+},
+navButton: {
+  backgroundColor: "#819171",
+  paddingVertical: 8,
+  paddingHorizontal: 12,
+  borderRadius: 25,
+},
+navButtonText: {
+  color: "#FFF",
+  fontWeight: "600",
+  fontSize: 14,
+},
 });

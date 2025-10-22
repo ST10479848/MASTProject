@@ -47,5 +47,20 @@ const styles = StyleSheet.create({
   itemCourse: { fontSize: 14, color: "#819171" },
   itemPrice: { fontSize: 16, fontWeight: "600", color: "#392A24" },
   button: { backgroundColor: "#819171", padding: 15, borderRadius: 50, marginTop: 20, alignItems: "center" },
-  buttonText: { color: "#FFF", fontWeight: "600" },
+  buttonText: { color: "#FFF", fontWeight: "600" },navRow: {
+  flexDirection: "row",
+  justifyContent: "space-around",
+  marginBottom: 20,
+},
+navButton: {
+  backgroundColor: "#819171",
+  paddingVertical: 8,
+  paddingHorizontal: 12,
+  borderRadius: 25,
+},
+navButtonText: {
+  color: "#FFF",
+  fontWeight: "600",
+  fontSize: 14,
+},
 });

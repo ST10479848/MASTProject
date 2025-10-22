@@ -45,5 +45,20 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 15,
     lineHeight: 24,
-  },
+  },navRow: {
+  flexDirection: "row",
+  justifyContent: "space-around",
+  marginBottom: 20,
+},
+navButton: {
+  backgroundColor: "#819171",
+  paddingVertical: 8,
+  paddingHorizontal: 12,
+  borderRadius: 25,
+},
+navButtonText: {
+  color: "#FFF",
+  fontWeight: "600",
+  fontSize: 14,
+},
 });
