@@ -35,7 +35,11 @@ After: Introduced a MenuItem type in types.ts to define the structure of menu it
 UI/UX Improvements
 Before: The user interface had inconsistent styling, and navigation between screens was not intuitive.
 After: Applied consistent styling across all screens, added navigation buttons (Back, Contact, About) to each screen, and replaced static images with remote URLs for better performance and user experience.
-
+.
 [MAST-P1.docx](https://github.com/user-attachments/files/23060155/MAST-P1.docx)
+.
 https://pixabay.com/vectors/burger-pattern-hamburger-burger-7422088/
+.
 https://youtu.be/DBPlc-jZGRM
+.
+https://github.com/ST10479848/MASTProject.git
