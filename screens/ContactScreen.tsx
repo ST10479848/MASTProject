@@ -1,19 +1,42 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+// screens/ContactScreen.tsx
+import React from "react";
+import { View, Text, StyleSheet, ImageBackground } from "react-native";
 
 export default function ContactScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Contact Bayle Bites</Text>
-      <Text style={styles.text}> 97 8th Avenue, Southfield, Cape Town</Text>
-      <Text style={styles.text}> 021 357 9061</Text>
-      <Text style={styles.text}> BayleBites@gmail.com</Text>
-    </View>
+    <ImageBackground
+      source={require("../assets/burger-pattern.png")}
+      style={styles.bg}
+    >
+      <View style={styles.container}>
+        <Text style={styles.header}>Contact Us</Text>
+        <Text style={styles.text}>
+           Address: 45 Main Street, Cape Town, South Africa
+        </Text>
+        <Text style={styles.text}> Phone: +27 21 555 1234</Text>
+        <Text style={styles.text}> Email: info@baylebites.co.za</Text>
+        <Text style={styles.text}>
+           Hours: Mon–Sat: 9am – 10pm | Sun: 9am – 8pm
+        </Text>
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f9f4ed' },
-  header: { fontSize: 22, fontWeight: 'bold', marginBottom: 15 },
-  text: { fontSize: 16, marginVertical: 5 },
+  bg: { flex: 1, resizeMode: "cover" },
+  container: { flex: 1, justifyContent: "center", padding: 25 },
+  header: {
+    fontSize: 30,
+    fontWeight: "700",
+    color: "#392A24",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  text: {
+    fontSize: 16,
+    color: "#392A24",
+    textAlign: "center",
+    marginBottom: 10,
+  },
 });

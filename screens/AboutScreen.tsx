@@ -1,22 +1,49 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+// screens/AboutScreen.tsx
+import React from "react";
+import { View, Text, StyleSheet, ImageBackground, ScrollView } from "react-native";
 
 export default function AboutScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>About Bayle Bites</Text>
-      <Text style={styles.text}>
-        Bayle Bites is a new, up-and-coming local business offering delicious casual dining and takeaways.
-      </Text>
-      <Text style={styles.text}>
-        Our ingredients are locally sourced and FDA approved. We value customer safety, sanitation, and satisfaction.
-      </Text>
-    </View>
+    <ImageBackground
+      source={require("../assets/burger-pattern.png")}
+      style={styles.bg}
+    >
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.header}>About Bayle Bites</Text>
+        <Text style={styles.text}>
+          Bayle Bites is a casual dining restaurant established in 2015, known
+          for its handcrafted burgers, sizzling grills, and freshly baked
+          desserts. We pride ourselves on using local, high-quality ingredients
+          to serve food that feels like home.
+        </Text>
+        <Text style={styles.text}>
+          Whether you’re here for a quick lunch or a relaxing evening meal,
+          Bayle Bites delivers comfort and flavour in every bite.
+        </Text>
+        <Text style={styles.text}>
+          Our chefs are passionate about creative yet affordable cuisine —
+          mixing modern recipes with classic South African favourites.
+        </Text>
+      </ScrollView>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f9f4ed', padding: 20, justifyContent: 'center' },
-  header: { fontSize: 22, fontWeight: 'bold', marginBottom: 10 },
-  text: { fontSize: 16, marginBottom: 10 },
+  bg: { flex: 1 },
+  container: { padding: 20 },
+  header: {
+    fontSize: 30,
+    fontWeight: "700",
+    color: "#392A24",
+    textAlign: "center",
+    marginBottom: 15,
+  },
+  text: {
+    fontSize: 16,
+    color: "#392A24",
+    textAlign: "center",
+    marginBottom: 15,
+    lineHeight: 24,
+  },
 });

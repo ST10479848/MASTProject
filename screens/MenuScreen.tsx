@@ -1,40 +1,48 @@
-import React, { useState } from 'react';
-import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
-const menuData = [
-  { id: '1', name: 'Bruschetta', category: 'Appetizers', price: 'R39.99' },
-  { id: '2', name: 'Beef Burger', category: 'Main Dishes', price: 'R79.99' },
-  { id: '3', name: 'Chocolate Cake', category: 'Desserts', price: 'R49.99' },
-];
+import React, { useState } from "react";
+import { View, Text, FlatList, StyleSheet, ImageBackground, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../types";
 
 export default function MenuScreen() {
-  const [menuItems, setMenuItems] = useState(menuData);
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList, "Menu">>();
+  const [menu] = useState([
+    { id: "1", course: "Appetizers", name: "Bruschetta", price: 39.99 },
+    { id: "2", course: "Mains", name: "Beef Burger", price: 79.99 },
+    { id: "3", course: "Desserts", name: "Chocolate Cake", price: 49.99 },
+  ]);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Bayle Bites Menu</Text>
-      <FlatList
-        data={menuItems}
-        renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Text style={styles.name}>{item.name}</Text>
-            <Text>{item.category}</Text>
-            <Text style={styles.price}>{item.price}</Text>
-          </View>
-        )}
-        keyExtractor={(item) => item.id}
-      />
-      <Button title="Filter by Course" onPress={() => navigation.navigate('Filter' as never)} />
-    </View>
+    <ImageBackground source={require("../assets/burger-pattern.png")} style={styles.bg}>
+      <View style={styles.container}>
+        <Text style={styles.header}>Menu</Text>
+        <FlatList
+          data={menu}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <View style={styles.item}>
+              <Text style={styles.itemText}>{item.name}</Text>
+              <Text style={styles.itemCourse}>{item.course}</Text>
+              <Text style={styles.itemPrice}>R{item.price}</Text>
+            </View>
+          )}
+        />
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Chef")}>
+          <Text style={styles.buttonText}>Add New Dish</Text>
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f9f4ed', padding: 20 },
-  header: { fontSize: 22, fontWeight: 'bold', marginBottom: 10, color: '#3c2f2f' },
-  card: { backgroundColor: '#fff', padding: 15, marginBottom: 10, borderRadius: 10, elevation: 2 },
-  name: { fontSize: 18, fontWeight: '600', color: '#5e4b3c' },
-  price: { color: '#a49a7d', fontWeight: 'bold' },
+  bg: { flex: 1 },
+  container: { flex: 1, padding: 20 },
+  header: { fontSize: 32, fontWeight: "700", color: "#392A24", marginBottom: 10 },
+  item: { backgroundColor: "#FFF8E8", padding: 15, borderRadius: 10, marginBottom: 10 },
+  itemText: { fontSize: 18, fontWeight: "bold", color: "#392A24" },
+  itemCourse: { fontSize: 14, color: "#819171" },
+  itemPrice: { fontSize: 16, fontWeight: "600", color: "#392A24" },
+  button: { backgroundColor: "#819171", padding: 15, borderRadius: 50, marginTop: 20, alignItems: "center" },
+  buttonText: { color: "#FFF", fontWeight: "600" },
 });
