@@ -1,15 +1,12 @@
-// screens/FilterScreen.tsx
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  StyleSheet,
-  ImageBackground,
-} from "react-native";
+import {View,Text,FlatList,TouchableOpacity,StyleSheet,ImageBackground,} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../types";
+
 
 export default function FilterScreen() {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList, "Filter">>();
   const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
 
   const menu = [
@@ -29,7 +26,20 @@ export default function FilterScreen() {
   source={{ uri: "https://cdn.pixabay.com/photo/2023/03/18/14/14/burger-7422088_1280.png" }}
   style={styles.bg}
 >
-      <View style={styles.container}>
+            <View style={styles.container}>
+      
+              <View style={styles.navRow}>
+            <TouchableOpacity style={styles.navButton} onPress={() => navigation.goBack()}>
+              <Text style={styles.navButtonText}>Back</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate("Contact")}>
+              <Text style={styles.navButtonText}>Contact</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate("About")}>
+              <Text style={styles.navButtonText}>About</Text>
+            </TouchableOpacity>
+          </View>
+
         <Text style={styles.header}>Filter Menu</Text>
         <Text style={styles.subheader}>
           Choose a course to view specific dishes:

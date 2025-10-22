@@ -1,4 +1,3 @@
-// screens/ContactScreen.tsx
 import React from "react";
 import { View, Text, StyleSheet, ImageBackground } from "react-native";
 

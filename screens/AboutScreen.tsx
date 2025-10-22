@@ -1,4 +1,3 @@
-// screens/AboutScreen.tsx
 import React from "react";
 import { View, Text, StyleSheet, ImageBackground, ScrollView } from "react-native";
 

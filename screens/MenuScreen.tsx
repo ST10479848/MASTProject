@@ -18,6 +18,19 @@ export default function MenuScreen() {
    style={styles.bg}
  >
       <View style={styles.container}>
+
+        <View style={styles.navRow}>
+      <TouchableOpacity style={styles.navButton} onPress={() => navigation.goBack()}>
+        <Text style={styles.navButtonText}>Back</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate("Contact")}>
+        <Text style={styles.navButtonText}>Contact</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate("About")}>
+        <Text style={styles.navButtonText}>About</Text>
+      </TouchableOpacity>
+    </View>
+    
         <Text style={styles.header}>Menu</Text>
         <FlatList
           data={menu}

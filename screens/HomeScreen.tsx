@@ -12,6 +12,17 @@ export default function HomeScreen() {
      style={styles.bg}
    >
       <View style={styles.container}>
+
+        <View style={styles.navRow}>
+
+      <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate("Contact")}>
+        <Text style={styles.navButtonText}>Contact</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate("About")}>
+        <Text style={styles.navButtonText}>About</Text>
+      </TouchableOpacity>
+    </View>
+    
         <Text style={styles.title}>Bayle Bites - Casual dining restaurant</Text>
         <Text style={styles.subtitle}>View our menu for delivery or in-store pickup</Text>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Menu")}>
