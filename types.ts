@@ -6,3 +6,10 @@ export type RootStackParamList = {
   About: undefined;
   Chef: undefined;
 };
+
+export type MenuItem = {
+  id: string;
+  name: string;
+  course: string;
+  price: number;
+};

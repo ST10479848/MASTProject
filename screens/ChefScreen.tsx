@@ -1,8 +1,15 @@
+
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 import { Picker } from "@react-native-picker/picker";
+import { MenuItem } from "../types";
 
-export default function ChefScreen() {
+type ChefProps = {
+  menu: MenuItem[];
+  setMenu: React.Dispatch<React.SetStateAction<MenuItem[]>>;
+};
+
+export default function ChefScreen({ menu, setMenu }: ChefProps) {
   const [dish, setDish] = useState("");
   const [desc, setDesc] = useState("");
   const [course, setCourse] = useState("Appetizers");
@@ -22,7 +29,15 @@ export default function ChefScreen() {
     }
 
     setError("");
-    alert(`Added ${dish} (${course}) - R${priceNumber.toFixed(2)}`);
+
+    const newDish: MenuItem = {
+      id: Date.now().toString(),
+      name: dish,
+      course,
+      price: priceNumber,
+    };
+
+    setMenu([...menu, newDish]);
     setDish("");
     setDesc("");
     setPrice("");
@@ -34,8 +49,9 @@ export default function ChefScreen() {
       style={styles.bg}
     >
       <View style={styles.container}>
-
         <Text style={styles.header}>Add Menu Item</Text>
+
+        {error ? <Text style={{ color: "red", marginBottom: 10 }}>{error}</Text> : null}
 
         <TextInput placeholder="Dish name" style={styles.input} value={dish} onChangeText={setDish} />
         <TextInput placeholder="Description" style={styles.input} value={desc} onChangeText={setDesc} />
@@ -49,8 +65,6 @@ export default function ChefScreen() {
           <Picker.Item label="Desserts" value="Desserts" />
         </Picker>
 
-        {error ? <Text style={styles.errorText}>{error}</Text> : null}
-
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>Add Dish</Text>
         </TouchableOpacity>
@@ -58,6 +72,7 @@ export default function ChefScreen() {
     </ImageBackground>
   );
 }
+
 
 const styles = StyleSheet.create({
   bg: { flex: 1, resizeMode: "cover" },
