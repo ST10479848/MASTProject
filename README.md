@@ -1,40 +1,58 @@
-Change Log
+Changelog – Bayle Bites App (MAST Project)
 
-Implemented HomeScreen with navigation to Menu, Contact, and About screens.
-Added FilterScreen for filtering menu items by course.
-Introduced ChefScreen for adding new dishes to the menu.
-Established basic navigation structure using React Navigation.
+1. Core Architecture
 
-Enhanced UI with consistent styling across all screens.
-Replaced static images with remote image URLs for better performance.
-Added navigation buttons (Back, Contact, About) to all screens for improved user experience.
+* Implemented `MenuContext` to store menu items globally across all screens.
+* Wrapped `NavigationContainer` in `MenuProvider` in `App.tsx`.
+* Replaced local state menu arrays in `App.tsx` with context-driven state to ensure all screens reflect updates instantly.
 
-Refactored state management: lifted menu and setMenu state to App.tsx to allow shared state across components.
-Updated ChefScreen to accept menu and setMenu as props, enabling dynamic updates to the menu.
-Modified HomeScreen to display the total number of menu items and dynamically render the menu.
+2. Home Screen
 
-Defined a MenuItem type in types.ts for better type safety.
-Updated all components to utilize the MenuItem type, ensuring consistent data structures.
-Improved TypeScript configurations for stricter type checking.
+* Added display of total menu items.
+* Added calculation and display of average price per course (`Starter`, `Main`, `Dessert`).
+* Connected Home Screen to `MenuContext` for real-time updates.
+* Maintained original styling and background image for consistency.
 
-Resolved issues with form validation in ChefScreen.
-Fixed navigation bugs related to FilterScreen and HomeScreen.
-Optimized rendering performance by memoizing components where applicable.
+3. Chef Screen
 
-Refactoring Notes
+* Moved menu item addition from Home Screen to a dedicated Chef Screen.
+* Added form inputs for dish name, description, price, and course selection.
+* Implemented validation:
 
-State Management Refactor
-Before: Each screen (HomeScreen, FilterScreen, ChefScreen) maintained its own local state for the menu, leading to inconsistencies and redundant code.
-After: The menu state is now managed centrally in App.tsx and passed down to child components via props. This ensures a single source of truth for the menu data and allows for real-time updates across all screens.
-Component Prop Refactoring
-Before: Components like ChefScreen and FilterScreen managed their own state and did not communicate with each other.
-After: Components now receive menu and setMenu as props, enabling them to interact and update the shared state. This change facilitates better data flow and component reusability.
-TypeScript Enhancements
-Before: Components used generic JavaScript objects for menu items, leading to potential runtime errors and difficulties in maintaining the codebase.
-After: Introduced a MenuItem type in types.ts to define the structure of menu items. All components were updated to use this type, providing compile-time type checking and improving code maintainability.
-UI/UX Improvements
-Before: The user interface had inconsistent styling, and navigation between screens was not intuitive.
-After: Applied consistent styling across all screens, added navigation buttons (Back, Contact, About) to each screen, and replaced static images with remote URLs for better performance and user experience.
+  * All fields required.
+  * Price must be numeric and greater than 0.
+* Added course selection dropdown with correct types (`Starter`, `Main`, `Dessert`).
+* Implemented Remove Dish functionality allowing deletion of any menu item.
+* Styled Chef Screen to match app theme, including navigation and menu list.
+
+4. Menu Screen
+
+* Displays all menu items in a styled list.
+* Added button to navigate to Chef Screen to add new dishes.
+* Connected to `MenuContext` to ensure live updates when new dishes are added or removed.
+
+5. Filter Screen
+
+* Added functionality to filter menu items by course (`Starter`, `Main`, `Dessert`).
+* Updates dynamically based on `MenuContext` changes.
+* Styled filter buttons and menu list to match app theme.
+* Navigation buttons added for Back, Contact, and About pages.
+
+6. Types
+
+* Updated `types.ts`:
+
+  * Defined `Course` type: `"Starter" | "Main" | "Dessert"`.
+  * Updated `MenuItem` type to use `Course` type for the `course` field.
+* Ensured type consistency across Home, Chef, Filter, and Menu screens to prevent runtime errors.
+
+7. Bug Fixes and Optimizations
+
+* Resolved TypeScript type errors related to course selection in Chef Screen.
+* Removed prop-drilling by fully integrating `MenuContext`.
+* Ensured Home Screen calculations handle empty course arrays correctly.
+* Refined navigation consistency across all screens.
+
 .
 [MAST-P1.docx](https://github.com/user-attachments/files/23060155/MAST-P1.docx)
 .
@@ -43,3 +61,7 @@ https://pixabay.com/vectors/burger-pattern-hamburger-burger-7422088/
 https://youtu.be/DBPlc-jZGRM
 .
 https://github.com/ST10479848/MASTProject.git
+.
+https://github.com/user-attachments/assets/e52011c3-9b1f-4a79-910c-8055a67fbd3c
+
+
