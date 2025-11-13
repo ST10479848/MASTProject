@@ -4,23 +4,12 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../types";
 import { useMenu } from "../context/MenuContext";
 
-type HomeScreenProps = {
-  navigation: StackNavigationProp<RootStackParamList, "Home">;
+type MenuScreenProps = {
+  navigation: StackNavigationProp<RootStackParamList, "Menu">;
 };
 
-export default function HomeScreen({ navigation }: HomeScreenProps) {
+export default function MenuScreen({ navigation }: MenuScreenProps) {
   const { menu } = useMenu();
-
-  const courses = ["Starter", "Main", "Dessert"] as const;
-
-  const averages = courses.map((course) => {
-    const items = menu.filter((m) => m.course === course);
-    const avg =
-      items.length > 0
-        ? items.reduce((sum, item) => sum + item.price, 0) / items.length
-        : 0;
-    return { course, avg: avg.toFixed(2) };
-  });
 
   return (
     <ImageBackground
@@ -29,6 +18,9 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
     >
       <View style={styles.container}>
         <View style={styles.navRow}>
+          <TouchableOpacity style={styles.navButton} onPress={() => navigation.goBack()}>
+            <Text style={styles.navButtonText}>Back</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate("Contact")}>
             <Text style={styles.navButtonText}>Contact</Text>
           </TouchableOpacity>
@@ -37,18 +29,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.title}>Bayle Bites - Casual dining restaurant</Text>
-        <Text style={styles.subtitle}>View our menu for delivery or in-store pickup</Text>
-        <Text style={styles.totalItems}>Total menu items: {menu.length}</Text>
-
-        <View style={styles.avgContainer}>
-          <Text style={styles.avgTitle}>Average Prices:</Text>
-          {averages.map(({ course, avg }) => (
-            <Text key={course} style={styles.avgText}>
-              {course}: R{avg}
-            </Text>
-          ))}
-        </View>
+        <Text style={styles.header}>Menu ({menu.length} items)</Text>
 
         <FlatList
           data={menu}
@@ -62,8 +43,8 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
           )}
         />
 
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Menu")}>
-          <Text style={styles.buttonText}>CLICK FOR MENU</Text>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Chef")}>
+          <Text style={styles.buttonText}>Add New Dish</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -71,21 +52,16 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
 }
 
 const styles = StyleSheet.create({
-  bg: { flex: 1, resizeMode: "cover", justifyContent: "center" },
-  container: { flex: 1, alignItems: "center", justifyContent: "center", padding: 20 },
-  title: { fontSize: 28, fontWeight: "700", color: "#392A24", textAlign: "center", marginBottom: 15 },
-  subtitle: { fontSize: 16, color: "#392A24", textAlign: "center", marginBottom: 10 },
-  totalItems: { fontSize: 16, color: "#392A24", marginBottom: 20 },
-  avgContainer: { backgroundColor: "#FFF8E8", padding: 10, borderRadius: 10, marginBottom: 20, width: "100%" },
-  avgTitle: { fontSize: 18, fontWeight: "700", color: "#392A24", marginBottom: 5 },
-  avgText: { fontSize: 16, color: "#819171" },
-  item: { backgroundColor: "#FFF8E8", padding: 10, borderRadius: 10, marginBottom: 10, width: "100%" },
-  itemText: { fontSize: 16, fontWeight: "bold", color: "#392A24" },
+  bg: { flex: 1 },
+  container: { flex: 1, padding: 20 },
+  header: { fontSize: 32, fontWeight: "700", color: "#392A24", marginBottom: 10 },
+  item: { backgroundColor: "#FFF8E8", padding: 15, borderRadius: 10, marginBottom: 10 },
+  itemText: { fontSize: 18, fontWeight: "bold", color: "#392A24" },
   itemCourse: { fontSize: 14, color: "#819171" },
-  itemPrice: { fontSize: 14, fontWeight: "600", color: "#392A24" },
-  button: { backgroundColor: "#FFF", paddingVertical: 15, paddingHorizontal: 30, borderRadius: 50, marginTop: 15 },
-  buttonText: { fontSize: 18, fontWeight: "600", color: "#392A24" },
-  navRow: { flexDirection: "row", justifyContent: "space-around", marginBottom: 20, width: "100%" },
+  itemPrice: { fontSize: 16, fontWeight: "600", color: "#392A24" },
+  button: { backgroundColor: "#819171", padding: 15, borderRadius: 50, marginTop: 20, alignItems: "center" },
+  buttonText: { color: "#FFF", fontWeight: "600" },
+  navRow: { flexDirection: "row", justifyContent: "space-around", marginBottom: 20 },
   navButton: { backgroundColor: "#819171", paddingVertical: 8, paddingHorizontal: 12, borderRadius: 25 },
   navButtonText: { color: "#FFF", fontWeight: "600", fontSize: 14 },
 });
