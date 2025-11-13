@@ -1,14 +1,16 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { MenuProvider } from "./context/MenuContext";
+
 import HomeScreen from "./screens/HomeScreen";
 import MenuScreen from "./screens/MenuScreen";
 import FilterScreen from "./screens/FilterScreen";
 import ContactScreen from "./screens/ContactScreen";
 import AboutScreen from "./screens/AboutScreen";
 import ChefScreen from "./screens/ChefScreen";
+
 import { RootStackParamList } from "./types";
-import { MenuProvider } from "./context/MenuContext";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
