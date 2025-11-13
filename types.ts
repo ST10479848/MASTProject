@@ -7,9 +7,13 @@ export type RootStackParamList = {
   Chef: undefined;
 };
 
+export type Course = "Starter" | "Main" | "Dessert";
+
 export type MenuItem = {
   id: string;
   name: string;
-  course: string;
+  description?: string;
   price: number;
+  course: Course;
 };
+

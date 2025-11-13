@@ -1,14 +1,16 @@
 import React from "react";
 import { View, Text, FlatList, StyleSheet, ImageBackground, TouchableOpacity } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList, MenuItem } from "../types";
+import { RootStackParamList } from "../types";
+import { useMenu } from "../context/MenuContext";
 
 type MenuScreenProps = {
   navigation: StackNavigationProp<RootStackParamList, "Menu">;
-  menu: MenuItem[];
 };
 
-export default function MenuScreen({ navigation, menu }: MenuScreenProps) {
+export default function MenuScreen({ navigation }: MenuScreenProps) {
+  const { menu } = useMenu();
+
   return (
     <ImageBackground
       source={{ uri: "https://cdn.pixabay.com/photo/2023/03/18/14/14/burger-7422088_1280.png" }}

@@ -1,14 +1,26 @@
 import React from "react";
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList, MenuItem } from "../types";
+import { RootStackParamList } from "../types";
+import { useMenu } from "../context/MenuContext";
 
 type HomeScreenProps = {
   navigation: StackNavigationProp<RootStackParamList, "Home">;
-  menu: MenuItem[];
 };
 
-export default function HomeScreen({ navigation, menu }: HomeScreenProps) {
+export default function HomeScreen({ navigation }: HomeScreenProps) {
+  const { menu } = useMenu();
+
+  const courses = ["Starter", "Main", "Dessert"] as const;
+  const averages = courses.map((course) => {
+    const items = menu.filter((m) => m.course === course);
+    const avg =
+      items.length > 0
+        ? items.reduce((sum, item) => sum + item.price, 0) / items.length
+        : 0;
+    return { course, avg: avg.toFixed(2) };
+  });
+
   return (
     <ImageBackground
       source={{ uri: "https://cdn.pixabay.com/photo/2023/03/18/14/14/burger-7422088_1280.png" }}
@@ -27,6 +39,15 @@ export default function HomeScreen({ navigation, menu }: HomeScreenProps) {
         <Text style={styles.title}>Bayle Bites - Casual dining restaurant</Text>
         <Text style={styles.subtitle}>View our menu for delivery or in-store pickup</Text>
         <Text style={styles.totalItems}>Total menu items: {menu.length}</Text>
+
+        <View style={styles.avgContainer}>
+          <Text style={styles.avgTitle}>Average Prices:</Text>
+          {averages.map(({ course, avg }) => (
+            <Text key={course} style={styles.avgText}>
+              {course}: R{avg}
+            </Text>
+          ))}
+        </View>
 
         <FlatList
           data={menu}
@@ -54,6 +75,9 @@ const styles = StyleSheet.create({
   title: { fontSize: 28, fontWeight: "700", color: "#392A24", textAlign: "center", marginBottom: 15 },
   subtitle: { fontSize: 16, color: "#392A24", textAlign: "center", marginBottom: 10 },
   totalItems: { fontSize: 16, color: "#392A24", marginBottom: 20 },
+  avgContainer: { backgroundColor: "#FFF8E8", padding: 10, borderRadius: 10, marginBottom: 20, width: "100%" },
+  avgTitle: { fontSize: 18, fontWeight: "700", color: "#392A24", marginBottom: 5 },
+  avgText: { fontSize: 16, color: "#819171" },
   item: { backgroundColor: "#FFF8E8", padding: 10, borderRadius: 10, marginBottom: 10, width: "100%" },
   itemText: { fontSize: 16, fontWeight: "bold", color: "#392A24" },
   itemCourse: { fontSize: 14, color: "#819171" },
